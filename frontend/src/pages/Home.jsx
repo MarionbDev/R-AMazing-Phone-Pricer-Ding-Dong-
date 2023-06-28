@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 
 function LogIn() {
@@ -72,12 +72,6 @@ function LogIn() {
         <div className="button-container">
           <button type="submit">Se connecter </button>
         </div>
-        <p className="text">
-          Pas encore inscrit ?
-          <Link to="/s'inscrire" className="sign-up">
-            Créer un compte
-          </Link>
-        </p>
       </form>
     </div>
   );
