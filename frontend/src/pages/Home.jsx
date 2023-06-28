@@ -50,6 +50,7 @@ function LogIn() {
 
   const renderForm = (
     <span>
+      <h2 className="title"> Connexion </h2>
       <form onSubmit={handleSubmit}>
         <div>
           <input
@@ -80,7 +81,6 @@ function LogIn() {
       <div className={style.background}>
         <h1>Bienvenue</h1>
         <img src={Logo} alt="" />
-        <h2 className="title"> Connexion </h2>
         {renderForm}
       </div>
     </section>
