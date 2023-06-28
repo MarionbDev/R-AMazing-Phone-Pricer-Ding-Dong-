@@ -1,5 +1,5 @@
 const argon2 = require("@node-rs/argon2");
-const models = require("../models");
+const models = require("../routes");
 
 const hashingOptions = {
   type: argon2.argon2id,
