@@ -1,15 +1,7 @@
-const argon2 = require("@node-rs/argon2");
 const models = require("../routes");
 
-const hashingOptions = {
-  type: argon2.argon2id,
-  memoryCost: 2 ** 16,
-  timeCost: 5,
-  parallelism: 1,
-};
-
 const browse = (req, res) => {
-  models.user
+  models.mobile
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -21,7 +13,7 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.user
+  models.mobile
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -37,14 +29,14 @@ const read = (req, res) => {
 };
 
 const edit = (req, res) => {
-  const user = req.body;
+  const mobile = req.body;
 
   // TODO validations (length, format...)
 
-  user.id = parseInt(req.params.id, 10);
+  mobile.id = parseInt(req.params.id, 10);
 
-  models.user
-    .update(user)
+  models.mobile
+    .update(mobile)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -59,11 +51,11 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const user = req.body;
+  const mobile = req.body;
 
   // TODO validations (length, format...)
-  models.user
-    .insert(user)
+  models.mobile
+    .insert(mobile)
     .then(([result]) => {
       res.status(201).json({ id: result.insertId });
     })
@@ -74,7 +66,7 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.user
+  models.mobile
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -89,59 +81,10 @@ const destroy = (req, res) => {
     });
 };
 
-const login = (req, res) => {
-  const { email, password } = req.body;
-
-  models.user
-    .findByEmail(email)
-    .then(([users]) => {
-      if (users.length === 0) {
-        res.sendStatus(404);
-      } else if (!argon2.verifySync(users[0].hashedPassword, password)) {
-        res.sendStatus(404);
-      } else {
-        const user = { ...users[0] };
-        delete user.hashedPassword;
-        res
-          .cookie("token", "my super token", {
-            httpOnly: true,
-            secure: false,
-            maxAge: 10000,
-          })
-          .json(user);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
-const hashPassword = (req, res, next) => {
-  const { password } = req.body;
-  if (!password) {
-    res.sendStatus(400);
-  } else {
-    argon2
-      .hash(password, hashingOptions)
-      .then((hashedPassword) => {
-        req.body.hashedPassword = hashedPassword;
-        delete req.body.password;
-        next();
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  }
-};
-
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
-  login,
-  hashPassword,
 };
