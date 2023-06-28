@@ -50,7 +50,6 @@ function LogIn() {
 
   const renderForm = (
     <span>
-      <h2 className="title"> Connexion </h2>
       <form onSubmit={handleSubmit}>
         <div>
           <input
