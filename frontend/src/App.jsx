@@ -1,12 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { UserContextProvider } from "./context/UserContext";
 
 import Home from "./pages/Home";
+import FAQ from "./components/FAQ";
 
 import "./App.scss";
 
 function App() {
   return (
-    <main>
+    <main className="App">
       <span id="background-wrap">
         <div className="bubble x1" />
         <div className="bubble x2" />
@@ -19,11 +21,13 @@ function App() {
         <div className="bubble x9" />
         <div className="bubble x10" />
       </span>
-      <Router>
+
+      <UserContextProvider>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/FAQ" element={<FAQ />} />
         </Routes>
-      </Router>
+      </UserContextProvider>
     </main>
   );
 }
