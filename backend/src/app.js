@@ -24,7 +24,7 @@ app.use(
 
 // import and mount the API routes
 
-const router = require("./router");
+const router = require("./routes");
 
 app.use("/api", router);
 
