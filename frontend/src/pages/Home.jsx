@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Logo from "@assets/Icons/Logo.svg";
 import { useUserContext } from "../context/UserContext";
+import style from "./Home.module.scss";
 
 function LogIn() {
-  const dispatch = useUserContext()[1];
+  const dispatch = useUserContext();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -47,42 +49,41 @@ function LogIn() {
   };
 
   const renderForm = (
-    <div className="form">
+    <span>
       <form onSubmit={handleSubmit}>
-        <div className="input-container">
-          <label htmlFor="email"> Email </label>
+        <div>
           <input
-            className="border"
             type="email"
             name="email"
+            placeholder="Email"
             required
             onChange={handleChangeEmail}
           />
         </div>
-        <div className="input-container">
-          <label htmlFor="password"> Mot de passe </label>
+        <div>
           <input
-            className="border"
             type="password"
             name="pass"
+            placeholder="Mot de passe"
             required
             onChange={handleChangePassword}
           />
         </div>
-        <div className="button-container">
+        <div>
           <button type="submit">Se connecter </button>
         </div>
       </form>
-    </div>
+    </span>
   );
   return (
-    <div className="app">
-      <div className="login-form">
-        <div className="title"> Connexion </div>
+    <section className={style.form}>
+      <div className={style.background}>
+        <h1>Bienvenue</h1>
+        <img src={Logo} alt="" />
+        <h2 className="title"> Connexion </h2>
         {renderForm}
       </div>
-      <div className="hexagone" />
-    </div>
+    </section>
   );
 }
 
