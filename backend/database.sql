@@ -49,13 +49,23 @@ CREATE TABLE
 INSERT INTO
   `user`
 VALUES
-  (1, "Marion", "marion@gmail.com", "marion123"),
-  (2, "Quentin", "quentin@gmail.com", "quentin123"),
+  (
+    1,
+    "Marion",
+    "marion@gmail.com",
+    "$argon2id$v=19$m=19456,t=2,p=1$8/W1b24lYgs5kMlqtddC6w$tm8COo9TxGHiVN+KbdLUxFkjQ+6J2H+D/jgrZkUZn34"
+  ),
+  (
+    2,
+    "Quentin",
+    "quentin@gmail.com",
+    "$argon2id$v=19$m=19456,t=2,p=1$8/W1b24lYgs5kMlqtddC6w$tm8COo9TxGHiVN+KbdLUxFkjQ+6J2H+D/jgrZkUZn34"
+  ),
   (
     3,
     "Angélique",
     "angelique@gmail.com",
-    "angelique123"
+    "$argon2id$v=19$m=19456,t=2,p=1$8/W1b24lYgs5kMlqtddC6w$tm8COo9TxGHiVN+KbdLUxFkjQ+6J2H+D/jgrZkUZn34"
   );
 
 UNLOCK TABLES;
