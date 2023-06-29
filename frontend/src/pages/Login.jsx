@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SignUp from "@components/SignUp";
-import Logo from "@assets/Icons/Logo.svg";
+import logo from "../assets/ec-square-4.png";
 import { useUserContext } from "../context/UserContext";
 import style from "./Login.module.scss";
 
@@ -85,7 +85,7 @@ function Login() {
       <SignUp registering={registering} setRegistering={setRegistering} />
       <div className={style.background}>
         <h1>Bienvenue</h1>
-        <img src={Logo} alt="" />
+        <img src={logo} alt="" />
         {renderForm}
       </div>
     </section>

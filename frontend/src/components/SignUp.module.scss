@@ -7,6 +7,7 @@
   z-index: 1;
 
   .background {
+    margin-left: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,7 +39,7 @@
             margin: 0.5rem auto;
             border: none;
             border-radius: 75px;
-            font-size: clamp(12px, 7vw, 28px);
+            font-size: 1rem;
             transition: 0.1s;
 
             &:focus {
@@ -58,15 +59,16 @@
               margin: 1rem 1rem;
               border: solid 2px #a0a0a0;
               border-radius: 75px;
-              font-size: clamp(12px, 7vw, 28px);
-              color: #757575;
+              font-size: 1rem;
+              color: #ffffff;
+              background-color: #5f6280;
               transition: 0.3s;
               cursor: pointer;
 
               &:hover {
-                background-color: #cef0ff;
-                color: #2953ae;
-                border: solid 2px #2953ae;
+                background-color: #d2d6ee;
+                color: #24355b;
+                border: solid 2px #24355b;
                 transform: scale(105%);
               }
             }

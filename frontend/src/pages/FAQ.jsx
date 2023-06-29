@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Arrow from "@assets/Icons/arrow.svg";
+import LogoHome from "@components/LogoHome";
 
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -14,16 +15,19 @@ export default function FAQ() {
 
   return (
     <div className="md:flex">
-      <div className="min-h-screen p-10 md:ml-[100px] md:w-[70vw] ">
-        <h2 className="flex justify-center mb-10 text-[20px] font-bold">FAQ</h2>
+      <LogoHome />
+      <div className="min-h-screen p-10 md:ml-[18rem] md:w-[70vw]">
+        <h2 className="flex justify-center mb-10 text-2xl uppercase text-blue-950 tracking-tighter font-bold">
+          FAQ
+        </h2>
         <div className="flex flex-col">
           <button
             type="button"
             onClick={() => toggleContent(0)}
-            className="faq focus:outline-none p-2 rounded-md mb-8  "
+            className="shadow-md shadow-gray-400 bg-gray-200 border-2 border-gray-400 focus:outline-none p-2 rounded-md mb-8  "
           >
             <div className="flex justify-between">
-              <p className="font-bold mb-2 text-start">
+              <p className=" text-blue-950 flex text-xl  text-start">
                 Comment trouver la version de mon smartphone ?
               </p>
               <img
@@ -63,10 +67,10 @@ export default function FAQ() {
           <button
             type="button"
             onClick={() => toggleContent(1)}
-            className="faq focus:outline-none p-2 rounded-md mb-8"
+            className="shadow-md shadow-gray-400 bg-gray-200 border-2 border-gray-400 focus:outline-none p-2 rounded-md mb-8"
           >
             <div className="flex justify-between">
-              <p className=" mb-2 font-bold text-start">
+              <p className="  text-blue-950 flex text-xl text-start">
                 Comment trouver la RAM et le stockage dans mon smartphone ?
               </p>
               <img
@@ -110,10 +114,10 @@ export default function FAQ() {
           <button
             type="button"
             onClick={() => toggleContent(3)}
-            className="faq focus:outline-none p-2 mb-8 rounded-md "
+            className="shadow-md shadow-gray-400 bg-gray-200 border-2 border-gray-400 focus:outline-none p-2 mb-8 rounded-md "
           >
             <div className="flex justify-between">
-              <p className=" mb-2 font-bold text-start">
+              <p className=" text-blue-950 flex text-xl text-start">
                 Comment se connecter ?
               </p>
               <img
@@ -132,10 +136,10 @@ export default function FAQ() {
           <button
             type="button"
             onClick={() => toggleContent(4)}
-            className="faq focus:outline-none p-2 mb-8 rounded-md"
+            className="shadow-md shadow-gray-400 bg-gray-200 border-2 border-gray-400 focus:outline-none p-2 mb-8 rounded-md"
           >
             <div className="flex  justify-between">
-              <p className=" mb-2 font-bold text-start">
+              <p className=" text-blue-950 flex text-xl text-start">
                 Comment créer un compte ?
               </p>
               <img

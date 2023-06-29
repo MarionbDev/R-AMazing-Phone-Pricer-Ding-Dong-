@@ -5,13 +5,19 @@ import React, { useContext } from "react";
 import UserContext from "../context/UserContext";
 // import style from "./Home.module.scss";
 import MobileList from "./MobileList";
+import LogoHome from "../components/LogoHome";
 
 function Home() {
   const [{ user }] = useContext(UserContext);
 
   return (
-    <section className=" w-[70%] mx-auto">
+    <section className=" w-[70%] mx-auto ">
+      {" "}
+      <h1 className="absolute mt-3 ml-[75%]">
+        Bienvenue {user && `${user.name}`}
+      </h1>
       <div>
+        <LogoHome />
         <MobileList />
       </div>
     </section>
