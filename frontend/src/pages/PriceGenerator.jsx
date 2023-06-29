@@ -1,14 +1,23 @@
 import { useState } from "react";
+import { Modal } from "react-responsive-modal";
+import Navbar from "@components/Header";
 import RamMobileFilter from "../components/RamMobileFilter";
 import StorageMobileFilter from "../components/StorageMobileFilter";
 import NetworkFilter from "../components/NetworkMobileFilter copy";
 import StateFilter from "../components/StateMobile";
+import ScreenFilter from "../components/ScreenMobileFilter";
 
 export default function PriceGenerator() {
   const [selectedRAM, setSelectedRAM] = useState(-1);
   const [selectedStorage, setSelectedStorage] = useState(-1);
   const [selectedState, setSelectedState] = useState("");
   const [isChecked, setIsChecked] = useState("");
+  const [selectedScreen, setSelectedScreen] = useState("");
+  const [showPrice, setShowPrice] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const onOpenModal = () => setOpen(true);
+  const onCloseModal = () => setOpen(false);
 
   const handleRAMFilter = (selectedValue) => {
     setSelectedRAM(selectedValue);
@@ -24,6 +33,14 @@ export default function PriceGenerator() {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+  };
+
+  const handleScreenFilter = (selectedValue) => {
+    setSelectedScreen(selectedValue);
+  };
+
+  const handleDingDongFilter = () => {
+    setShowPrice(true);
   };
 
   let valeursRam = 0;
@@ -89,10 +106,10 @@ export default function PriceGenerator() {
       valeursState = -50;
       break;
     case "BLOQUE":
-      valeursState = 0;
+      valeursState = -10;
       break;
     case "CONDITIONNABLE":
-      valeursState = 0;
+      valeursState = -5;
       break;
     case "CONDITIONNE":
       valeursState = 0;
@@ -102,47 +119,139 @@ export default function PriceGenerator() {
       valeursState = 0;
   }
 
-  const totalVal = valeursRam + valeursStorage;
+  let valeursScreen = 0;
+  switch (selectedScreen) {
+    case 4:
+      valeursScreen = 25;
+      break;
+    case 5:
+      valeursScreen = 32;
+      break;
+    case 6:
+      valeursScreen = 38;
+      break;
+    case 7:
+      valeursScreen = 44;
+      break;
 
-  // let valeurCategory = "";
-  // if (selectedRAM !== -1 && selectedStorage !== -1 && selectedState !== "") {
-  //   if (totalVal < 90) {
-  //     valeurCategory = "1 - HC";
-  //   } else if (totalVal >= 90 && totalVal < 165) {
-  //     valeurCategory = "2 - C";
-  //   } else if (totalVal >= 165 && totalVal < 255) {
-  //     valeurCategory = "3 - B";
-  //   } else if (totalVal >= 255 && totalVal < 375) {
-  //     valeurCategory = "4 - A";
-  //   } else {
-  //     valeurCategory = "5 - Premium";
-  //   }
-  // }
+    default:
+      valeursScreen = 0;
+  }
 
-  const prixMobile = totalVal + valeursState;
+  const totalVal = valeursRam + valeursStorage + valeursScreen;
+
+  let valeurCategory = "";
+  if (selectedRAM !== -1 && selectedStorage !== -1 && selectedState !== "") {
+    if (totalVal < 90) {
+      valeurCategory = "1 - HC";
+    } else if (totalVal >= 90 && totalVal < 165) {
+      valeurCategory = "2 - C";
+    } else if (totalVal >= 165 && totalVal < 255) {
+      valeurCategory = "3 - B";
+    } else if (totalVal >= 255 && totalVal < 375) {
+      valeurCategory = "4 - A";
+    } else {
+      valeurCategory = "5 - Premium";
+    }
+  }
+
+  let prixMobile = totalVal + valeursState;
+
+  if (valeurCategory === "1 - HC") {
+    prixMobile += 10;
+  } else if (valeurCategory === "2 - C") {
+    prixMobile += 20;
+  } else if (valeurCategory === "3 - B") {
+    prixMobile += 40;
+  } else if (valeurCategory === "4 - A") {
+    prixMobile += 60;
+  } else if (valeurCategory === "5 - Premium") {
+    prixMobile += 70;
+  }
 
   return (
-    <div>
-      <RamMobileFilter handleRAMFilter={handleRAMFilter} />
-      <StorageMobileFilter handleStorageFilter={handleStorageFilter} />
-      <StateFilter handleStateFilter={handleStateFilter} />
-      <NetworkFilter />
+    <div className="flex w-[100%]">
       <div>
-        <label>
-          Chargeur et câble fournie ?
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-          />
-        </label>
-        <div>{isChecked ? "Oui" : "Non"}</div>
+        <Navbar />
       </div>
-      <div>
-        {/* {smartphones.map((smartphone) => ( */}
-        {/* <div key={smartphone.id}> */}
+      <div className="flex m-auto">
+        <div className=" bg-[#D9D9D9] rounded-lg p-10 md:h-[28rem] md:w-96">
+          <div className="flex flex-col  ">
+            <div className="flex justify-between mb-8">
+              <p>Mémoire :</p>
+              <RamMobileFilter handleRAMFilter={handleRAMFilter} />
+            </div>
+            <div className="flex justify-between v mb-8">
+              <p>Stockage :</p>
+              <StorageMobileFilter handleStorageFilter={handleStorageFilter} />
+            </div>
+            <div className="flex justify-between mb-8">
+              <p>Ecran</p>
+              <ScreenFilter handleScreenFilter={handleScreenFilter} />
+            </div>
+            <div className="flex justify-between  mb-8">
+              <p>Réseau :</p>
+              <NetworkFilter />
+            </div>
+            <div>
+              <div className="flex mb-8">
+                <label>
+                  Chargeur et câble fournie ?
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={() => handleCheckboxChange()}
+                    className="mx-8"
+                  />
+                </label>
+                <div>{isChecked ? "Oui" : "Non"}</div>
+              </div>
+            </div>
+            <div className="flex justify-between  mb-8">
+              <p>Etat : </p>
+              <StateFilter handleStateFilter={handleStateFilter} />
+            </div>
+          </div>
 
-        <p>Prix : {prixMobile}</p>
+          <div className="flex md:mt-6">
+            <button
+              type="button"
+              onClick={() => {
+                handleDingDongFilter();
+                onOpenModal();
+              }}
+              className="bg-[#5F6280] text-[#FFFFFF] rounded-sm md:px-6 md:py-3"
+            >
+              Ding Dong ?
+            </button>
+            <Modal
+              open={open}
+              onClose={onCloseModal}
+              center
+              classNames={{ overlay: "customOverlay", modal: "customModal" }}
+            >
+              <div className="p-4 flex justify-center mt-3 ">
+                {valeurCategory === "1 - HC" ? (
+                  <h1>
+                    Malheureusement le téléphone n'est pas éligible à la reprise
+                    !!!
+                  </h1>
+                ) : (
+                  <h1>Le téléphone est éligible à la reprise !!!</h1>
+                )}
+              </div>
+            </Modal>
+            <div className="flex items-center ml-5">
+              <p className="mr-2">Prix :</p>
+            </div>
+            <div className="flex items-center w-[94px] text-center rounded-sm  bg-[#FFFF] md:px-6 md:py-">
+              {showPrice && valeurCategory !== "1 - HC" && (
+                <p className=" ">{prixMobile} €</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="bg-[#D9D9D9] rounded-lg p-5 md:ml-20 w-72">image</div>
       </div>
     </div>
   );

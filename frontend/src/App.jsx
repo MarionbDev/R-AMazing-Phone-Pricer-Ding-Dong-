@@ -8,10 +8,10 @@ import PriceGenerator from "./pages/PriceGenerator";
 import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
 import "./pages/faq.scss";
-
 import UserContext from "./context/UserContext";
-
+import "react-responsive-modal/styles.css";
 import "./App.scss";
+import "./pages/modal.css";
 
 function App() {
   const [{ user }] = useContext(UserContext);
@@ -40,9 +40,7 @@ function App() {
           {!user.id && <Route path="/login" element={<Login />} />}
           <Route path="/mobile" element={<PriceGenerator />} />
           <Route path="/addPhone" element={<AddPhone />} />
-          {/* <Route path="/FAQ" element={<FAQ />} /> */}
-          {/* <Route path="/calculateur" element={<Calculateur />} /> */}
-          <Route path="/FAQ" element={<FAQ />} />
+          && <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </BrowserRouter>
     </main>
