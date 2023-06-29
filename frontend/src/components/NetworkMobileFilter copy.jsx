@@ -10,7 +10,7 @@ export default function NetworkFilter() {
       <select
         value={selectedNetwork}
         onChange={(e) => setSelectedNetwork(e.target.value)}
-        className="w-48 text-center rounded-md"
+        className="w-36 md:w-48 text-center rounded-md"
       >
         <option value="">Réseau du mobile</option>
         {networkOptions.map((option) => (

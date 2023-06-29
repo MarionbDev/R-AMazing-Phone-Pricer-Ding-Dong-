@@ -15,7 +15,7 @@ export default function RamFilter({ handleRAMFilter }) {
           setSelectedRAM(value);
           handleRAMFilter(value);
         }}
-        className="w-48 text-center rounded-md"
+        className="w-36 md:w-48 text-center rounded-md"
       >
         <option value="" className="">
           RAM du mobile

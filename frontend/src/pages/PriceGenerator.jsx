@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Modal } from "react-responsive-modal";
-import Navbar from "@components/Header";
 import RamMobileFilter from "../components/RamMobileFilter";
 import StorageMobileFilter from "../components/StorageMobileFilter";
 import NetworkFilter from "../components/NetworkMobileFilter copy";
@@ -170,44 +169,41 @@ export default function PriceGenerator() {
   }
 
   return (
-    <div className="flex w-[100%]">
-      <div>
-        <Navbar />
-      </div>
-      <div className="flex m-auto">
-        <div className=" bg-[#D9D9D9] rounded-lg p-10 md:h-[28rem] md:w-96">
-          <div className="flex flex-col  ">
-            <div className="flex justify-between mb-8">
+    <div className="flex mb-36 md:mb-0">
+      <div className="flex justify-center m-auto">
+        <div className="flex flex-col text-[14px] bg-[#D9D9D9] rounded-lg w-72 p-4  md:p-10 md:h-[28rem] md:w-96 md:text-[16px] ">
+          <div className="flex flex-col   ">
+            <div className="flex justify-between mb-4 md:mb-8">
               <p>Mémoire :</p>
               <RamMobileFilter handleRAMFilter={handleRAMFilter} />
             </div>
-            <div className="flex justify-between v mb-8">
+            <div className="flex justify-between mb-4 md:mb-8">
               <p>Stockage :</p>
               <StorageMobileFilter handleStorageFilter={handleStorageFilter} />
             </div>
-            <div className="flex justify-between mb-8">
+            <div className="flex justify-between mb-4 md:mb-8">
               <p>Ecran</p>
               <ScreenFilter handleScreenFilter={handleScreenFilter} />
             </div>
-            <div className="flex justify-between  mb-8">
+            <div className="flex justify-between mb-4 md:mb-8">
               <p>Réseau :</p>
               <NetworkFilter />
             </div>
             <div>
-              <div className="flex mb-8">
-                <label>
+              <div className="flex mb-4 md:mb-8">
+                <label className=" md:m-0">
                   Chargeur et câble fournie ?
                   <input
                     type="checkbox"
                     checked={isChecked}
                     onChange={() => handleCheckboxChange()}
-                    className="mx-8"
+                    className=" mx-4 md:mx-8"
                   />
                 </label>
                 <div>{isChecked ? "Oui" : "Non"}</div>
               </div>
             </div>
-            <div className="flex justify-between  mb-8">
+            <div className="flex justify-between mb-4 md:mb-8">
               <p>Etat : </p>
               <StateFilter handleStateFilter={handleStateFilter} />
             </div>
@@ -220,7 +216,7 @@ export default function PriceGenerator() {
                 handleDingDongFilter();
                 onOpenModal();
               }}
-              className="bg-[#5F6280] text-[#FFFFFF] rounded-sm md:px-6 md:py-3"
+              className="bg-[#5F6280]  text-[#FFFFFF] rounded-sm px-3 py-2 md:px-6 md:py-3"
             >
               Ding Dong ?
             </button>
@@ -229,8 +225,15 @@ export default function PriceGenerator() {
               onClose={onCloseModal}
               center
               classNames={{ overlay: "customOverlay", modal: "customModal" }}
+              closeIcon={
+                <span
+                  style={{ fontSize: "20px", width: "20px", height: "20px" }}
+                >
+                  X
+                </span>
+              }
             >
-              <div className="p-4 flex justify-center mt-3 ">
+              <div className="p-2 text-base flex justify-center text-[#FFFFFF] italic font-lightbold md:text-lg md:mt-0 md:py-0">
                 {valeurCategory === "1 - HC" ? (
                   <h1>
                     Malheureusement le téléphone n'est pas éligible à la reprise
@@ -251,7 +254,6 @@ export default function PriceGenerator() {
             </div>
           </div>
         </div>
-        <div className="bg-[#D9D9D9] rounded-lg p-5 md:ml-20 w-72">image</div>
       </div>
     </div>
   );

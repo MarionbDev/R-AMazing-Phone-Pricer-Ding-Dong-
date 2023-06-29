@@ -15,7 +15,7 @@ export default function StorageMobileFilter({ handleStorageFilter }) {
           setSelectedStorage(value);
           handleStorageFilter(value);
         }}
-        className="w-48 text-center rounded-md"
+        className="w-36 md:w-48 text-center rounded-md"
       >
         <option value="">Stockage du mobile</option>
         {storageOptions.map((option) => (
