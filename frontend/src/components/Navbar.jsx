@@ -22,7 +22,7 @@ const Navbar = () => {
           />
         </Link>
 
-        <Link to="/addPhone">
+        <Link to="/AddPhone">
           <img
             src={phoneAdd}
             alt="Logo"
