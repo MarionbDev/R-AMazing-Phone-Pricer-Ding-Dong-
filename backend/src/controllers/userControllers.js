@@ -122,7 +122,7 @@ const destroy = (req, res) => {
 const login = (req, res) => {
   const { mail, password } = req.body;
 
-  models.user
+  return models.user
     .findByEmail(mail)
     .then(([users]) => {
       if (users.length === 0) {
@@ -131,7 +131,7 @@ const login = (req, res) => {
         res.sendStatus(404);
       } else {
         const user = { ...users[0] };
-        delete user.hashedPassword;
+        delete user.password;
         res
           .cookie("token", "my super token", {
             httpOnly: true,

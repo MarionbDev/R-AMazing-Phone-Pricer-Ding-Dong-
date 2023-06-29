@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+/* eslint-disable import/no-duplicates */
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import SignUp from "@components/SignUp";
 import Logo from "@assets/Icons/Logo.svg";
 import { useUserContext } from "../context/UserContext";
+import UserContext from "../context/UserContext";
 import style from "./Home.module.scss";
 
 function LogIn() {
-  const dispatch = useUserContext();
+  const dispatch = useUserContext()[1];
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [mail, setMail] = useState("");
+  const [registering, setRegistering] = useState(false);
   const [password, setPassword] = useState("");
-  // const [isSubmit] = useState("");
+  const [{ user }] = useContext(UserContext);
 
   const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
+    setMail(e.target.value);
   };
 
   const handleChangePassword = (e) => {
@@ -22,17 +26,17 @@ function LogIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!mail || !password) {
       alert("You must provide an email and a password!!!!");
     } else {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/login`, {
         method: "POST",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email,
+          mail,
           password,
         }),
       })
@@ -55,7 +59,7 @@ function LogIn() {
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Mail"
             required
             onChange={handleChangeEmail}
           />
@@ -69,18 +73,22 @@ function LogIn() {
             onChange={handleChangePassword}
           />
         </div>
-        <div>
+        <div className={style.buttons}>
           <button type="submit">Se connecter </button>
+          <button type="button" onClick={() => setRegistering(true)}>
+            S'enregistrer
+          </button>
         </div>
       </form>
     </span>
   );
   return (
     <section className={style.form}>
+      <SignUp registering={registering} setRegistering={setRegistering} />
       <div className={style.background}>
-        <h1>Bienvenue</h1>
+        <h1>Bienvenue {user && `${user.name}`}</h1>
         <img src={Logo} alt="" />
-        {renderForm}
+        {!user && renderForm}
       </div>
     </section>
   );
