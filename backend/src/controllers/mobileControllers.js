@@ -1,90 +1,84 @@
-const models = require("../routes");
+const connection = require("../dbConnection");
 
-const browse = (req, res) => {
-  models.mobile
-    .findAll()
-    .then(([rows]) => {
-      res.send(rows);
-    })
+const getMobiles = (req, res) => {
+  const sql = "SELECT id, name, modele, image FROM mobile ORDER BY name DESC";
+  connection
+    .query(sql)
+    .then(([mobiles]) => res.json(mobiles))
     .catch((err) => {
       console.error(err);
       res.sendStatus(500);
     });
 };
 
-const read = (req, res) => {
-  models.mobile
-    .find(req.params.id)
-    .then(([rows]) => {
-      if (rows[0] == null) {
-        res.sendStatus(404);
-      } else {
-        res.status(req.method === "POST" ? 201 : 200).send(rows[0]);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+const getOneMobileById = (req, res) => {
+  const idMobile = parseInt(req.params.id, 10);
+  if (Number.isNaN(idMobile)) {
+    res.sendStatus(404);
+  } else {
+    const sql = "SELECT id, name, modele, image FROM mobile WHERE id = ?";
+
+    connection
+      .query(sql, [idMobile])
+      .then(([mobiles]) => {
+        if (mobiles.length > 0) {
+          res.json(mobiles[0]);
+        } else {
+          res.sendStatus(404);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  }
 };
 
-const edit = (req, res) => {
-  const mobile = req.body;
+const createMobile = (req, res) => {
+  const { name, modele, image } = req.body;
 
-  // TODO validations (length, format...)
+  if (!name || !modele) {
+    return res.sendStatus(422);
+  }
 
-  mobile.id = parseInt(req.params.id, 10);
+  const sql = "INSERT INTO mobile (name, modele, image) VALUES (?, ?, ?)";
 
-  models.mobile
-    .update(mobile)
+  return connection
+    .query(sql, [name, modele, image])
     .then(([result]) => {
+      return res.status(201).json({
+        id: result.insertId,
+        name,
+        modele,
+        image,
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.sendStatus(500);
+    });
+};
+
+const deleteMobile = (req, res) => {
+  const idMobile = parseInt(req.params.id, 10);
+  if (Number.isNaN(idMobile)) {
+    res.sendStatus(422);
+  } else {
+    const sql = "DELETE FROM mobile WHERE id = ?";
+
+    connection.query(sql, [idMobile]).then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
       } else {
         res.sendStatus(204);
       }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
     });
-};
-
-const add = (req, res) => {
-  const mobile = req.body;
-
-  // TODO validations (length, format...)
-  models.mobile
-    .insert(mobile)
-    .then(([result]) => {
-      res.status(201).json({ id: result.insertId });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
-const destroy = (req, res) => {
-  models.mobile
-    .delete(req.params.id)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+  }
 };
 
 module.exports = {
-  browse,
-  read,
-  edit,
-  add,
-  destroy,
+  getMobiles,
+  getOneMobileById,
+  createMobile,
+  deleteMobile,
 };
