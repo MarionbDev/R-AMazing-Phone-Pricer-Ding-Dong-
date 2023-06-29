@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  background: #cef0ff;
+  background: #ebf9ff;
+  color: #333;
   font: 100% Lato, Arial, Sans Serif;
   height: 100vh;
   // width: 100vw;
@@ -21,7 +22,7 @@ body {
     max-width: 100vw;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     align-items: center;
   }
 

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-duplicates */
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import AddPhone from "./components/AddPhone";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import PriceGenerator from "./pages/PriceGenerator";
@@ -39,6 +40,8 @@ function App() {
             element={!user.id ? <Navigate to="/login" /> : <Home />}
           />
           {!user.id && <Route path="/login" element={<Login />} />}
+          <Route path="/addPhone" element={<AddPhone />} />
+          {/* <Route path="/FAQ" element={<FAQ />} /> */}
           {/* <Route path="/calculateur" element={<Calculateur />} /> */}
           <Route path="/FAQ" element={<FAQ />} />
         </Routes>
