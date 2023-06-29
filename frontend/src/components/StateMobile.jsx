@@ -21,7 +21,7 @@ export default function StateFilter({ handleStateFilter }) {
           setSelectedState(value);
           handleStateFilter(value);
         }}
-        className="w-48 text-center rounded-md"
+        className="w-36 md:w-48 text-center rounded-md"
       >
         <option value="">Etat du mobile</option>
         {stateOptions.map((option) => (

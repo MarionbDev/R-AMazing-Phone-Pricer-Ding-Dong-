@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import PriceGenerator from "./PriceGenerator";
 
 export default function MobileDetails() {
   const navigate = useNavigate();
@@ -35,34 +36,40 @@ export default function MobileDetails() {
   }
 
   return (
-    <figure className="bg-violet-900 p-4 rounded-2xl shadow-xl text-white max-w-6xl m-auto">
-      {mobile.image && (
-        <img
-          className="rounded-t-md w-full object-cover"
-          src={
-            /^(http|https)/.test(mobile.image)
-              ? mobile.image
-              : `${import.meta.env.VITE_ASSETS_URL}/mobiles/${mobile.image}`
-          }
-          alt={mobile.name}
-        />
-      )}
-      <figcaption>
-        <h2 className="text-center mb-2 p-4 font-extrabold border-b-2 border-violet-400">
-          {mobile.name}
-        </h2>
-
+    <div className=" flex flex-col md:ml-80 ">
+      <div className="text-center mb-8 p-4 font-extrabold border-b-2 border-violet-400">
+        <h2 className="md:text-[18px]">{mobile.name}</h2>
         <p>
           Modèle : <span>{mobile.modele}</span>
         </p>
-      </figcaption>
-      <button
-        className="bg-red-700 inline-block rounded-full shadow-xl px-6 py-2 hover:text-white hover:bg-red-500"
-        type="button"
-        onClick={deleteMobile}
-      >
-        Delete
-      </button>
-    </figure>
+      </div>
+
+      <div className="flex flex-col-reverse md:flex-row ">
+        <PriceGenerator />
+        <div className="flex flex-col mb-8 md:mb-0 md:ml-16">
+          {mobile.image && (
+            <img
+              className="rounded-t-md w-full object-cover"
+              src={
+                /^(http|https)/.test(mobile.image)
+                  ? mobile.image
+                  : `${import.meta.env.VITE_ASSETS_URL}/mobiles/${mobile.image}`
+              }
+              alt={mobile.name}
+            />
+          )}
+
+          <div className="mt-2">
+            <button
+              className="invisible bg-red-200 inline-block rounded-full shadow-xl md:visible md:px-6 md:py-2 hover:text-white hover:bg-red-400"
+              type="button"
+              onClick={deleteMobile}
+            >
+              Supprimer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
