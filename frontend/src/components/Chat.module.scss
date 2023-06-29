@@ -1,0 +1,136 @@
+.chat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .container {
+    padding: 1.5rem;
+    border-radius: 25px;
+    max-width: 350px;
+    background-color: #e4e4e4;
+
+    span {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-height: 300px;
+      overflow-y: scroll;
+      overflow-wrap: break-word;
+      scroll-snap-type: y mandatory;
+      scroll-snap-align: start;
+      max-width: 100%;
+      overflow-x: hidden;
+      border: solid 1px #989898;
+      border-radius: 6px;
+      padding: 0.5rem;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      &::-webkit-scrollbar-button {
+        width: 0px;
+        height: 0px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #282151;
+        border: 0px none #ffffff;
+        border-radius: 50px;
+      }
+      &::-webkit-scrollbar-thumb:hover {
+        background: #5f6280;
+      }
+      &::-webkit-scrollbar-thumb:active {
+        background: #787ba1;
+      }
+      &::-webkit-scrollbar-track {
+        background: #989898;
+        border: 0px none #ffffff;
+        border-radius: 50px;
+      }
+      &::-webkit-scrollbar-track:hover {
+        background: #c1c1c1;
+      }
+      &::-webkit-scrollbar-track:active {
+        background: #ffffff;
+      }
+      &::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+
+      h2 {
+      }
+
+      div {
+        width: 100%;
+        padding: 0.2rem;
+
+        &:nth-child(odd) {
+          background-color: #d3d3d3;
+        }
+      }
+    }
+
+    form {
+      position: relative;
+      top: 0.5rem;
+
+      label {
+        input {
+          padding: 0.3rem;
+          border: solid 2px #a0a0a0;
+          border-radius: 25px;
+          cursor: pointer;
+
+          &:focus {
+            outline: none;
+            border: solid 2px #2953ae;
+          }
+        }
+      }
+
+      .send {
+        padding: 0.3rem;
+        margin: 0 0.5rem;
+        border: solid 2px #a0a0a0;
+        border-radius: 25px;
+        color: #757575;
+        transition: 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #cef0ff;
+          color: #2953ae;
+          border: solid 2px #2953ae;
+          transform: scale(105%);
+        }
+      }
+    }
+  }
+
+  .arrow {
+    position: relative;
+    top: 20px;
+    background-color: grey;
+    border-radius: 50%;
+    transition: 0.3s;
+    padding: 1rem;
+
+    img {
+      height: 25px;
+      width: 25px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .chat {
+    position: fixed;
+    margin-bottom: 44px;
+
+    .container {
+      max-width: 590px;
+    }
+  }
+}
