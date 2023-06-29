@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import AddPhone from "./components/AddPhone";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import PriceGenerator from "./pages/PriceGenerator";
+import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
 // import FAQ from "./components/FAQ";
 
@@ -31,6 +33,8 @@ function App() {
       <BrowserRouter>
         {user.id !== null && <Header />}
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/mobile" element={<PriceGenerator />} />
           <Route
             path="/"
             element={!user.id ? <Navigate to="/login" /> : <Home />}
@@ -38,6 +42,8 @@ function App() {
           {!user.id && <Route path="/login" element={<Login />} />}
           <Route path="/addPhone" element={<AddPhone />} />
           {/* <Route path="/FAQ" element={<FAQ />} /> */}
+          {/* <Route path="/calculateur" element={<Calculateur />} /> */}
+          <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </BrowserRouter>
     </main>
