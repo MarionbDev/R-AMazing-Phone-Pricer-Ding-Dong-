@@ -1,11 +1,12 @@
 /* eslint-disable import/no-duplicates */
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Calculateur from "./pages/Calculateur";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import PriceGenerator from "./pages/PriceGenerator";
+import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
-import FAQ from "./components/FAQ";
+// import FAQ from "./components/FAQ";
 
 import UserContext from "./context/UserContext";
 
@@ -31,12 +32,14 @@ function App() {
       <BrowserRouter>
         {user.id !== null && <Header />}
         <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/mobile" element={<PriceGenerator />} />
           <Route
             path="/"
             element={!user.id ? <Navigate to="/login" /> : <Home />}
           />
           {!user.id && <Route path="/login" element={<Login />} />}
-          <Route path="/calculateur" element={<Calculateur />} />
+          {/* <Route path="/calculateur" element={<Calculateur />} /> */}
           <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </BrowserRouter>
