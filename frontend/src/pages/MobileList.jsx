@@ -40,19 +40,20 @@ export default function MobileList() {
     <div>
       <div>
         <div>
-          <h2 className="mt-6 ml-20 mr-10">Filtrer les mobiles</h2>
-          <div className="ml-20">
-            <label>
-              Recherche par nom:
+          <div className="flex flex-col md:flex-row  md:ml-20  mt-8 mb-12 font-semibold">
+            <label className="uppercase text-blue-950 tracking-tighter">
+              Recherche par nom :
               <input
+                className="mx-3 w-[50%] md:w-[40%] mb-5 shadow-xl rounded-md border-2 border-gray-300"
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchQueryChange}
               />
             </label>
-            <label>
+            <label className="uppercase text-blue-950 tracking-tighter ">
               Recherche par modèle:
               <input
+                className="ml-3 w-[50%] md:w-[40%] shadow-xl rounded-md border-2 border-gray-300"
                 type="text"
                 value={searchQuery2}
                 onChange={handleSearchQuery2Change}
@@ -61,7 +62,7 @@ export default function MobileList() {
           </div>
         </div>
       </div>
-      <div className=" mt-4 ml-48 grid grid-cols-1 gap-9 md:grid-cols-2 ">
+      <div className=" mt-4 md:ml-48 mx-auto grid grid-cols-1 gap-9 md:grid-cols-2 w-[100%] md:w-[90%]">
         {filteredMobiles.map((mobile) => (
           <Mobile {...mobile} key={`mobile-${mobile.id}`} />
         ))}

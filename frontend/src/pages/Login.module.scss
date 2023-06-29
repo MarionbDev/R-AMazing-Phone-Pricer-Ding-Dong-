@@ -8,9 +8,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    justify-content: center;
+    width: 90%;
     max-width: 500px;
-    padding: 12px;
     border-radius: 25px;
     background: linear-gradient(
       135deg,
@@ -20,11 +20,11 @@
     box-shadow: 5px 5px 15px 5px #00000091;
 
     h1 {
-      font-size: clamp(20px, 10vw, 32px);
+      font-size: 2rem;
     }
 
     img {
-      width: 50%;
+      width: 60%;
       aspect-ratio: 1/1;
     }
 
@@ -46,7 +46,7 @@
             margin: 0.5rem auto;
             border: none;
             border-radius: 75px;
-            font-size: clamp(12px, 7vw, 28px);
+            font-size: 1rem;
             transition: 0.1s;
 
             &:focus {
@@ -61,21 +61,22 @@
             flex-direction: column;
 
             button {
-              width: 70%;
+              width: 60%;
               aspect-ratio: 9/1;
               padding: 1rem;
               margin: 0.3rem 0rem;
               border: solid 2px #a0a0a0;
               border-radius: 75px;
-              font-size: clamp(12px, 7vw, 28px);
-              color: #757575;
+              font-size: 1rem;
+              background-color: #5f6280;
+              color: #ffffff;
               transition: 0.3s;
               cursor: pointer;
 
               &:hover {
-                background-color: #cef0ff;
-                color: #2953ae;
-                border: solid 2px #2953ae;
+                background-color: #d2d6ee;
+                color: #24355b;
+                border: solid 2px #24355b;
                 transform: scale(105%);
               }
             }

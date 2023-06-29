@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Mobile({ id, name, modele, image }) {
   return (
     <Link to={`/mobiles/${id}`}>
-      <div className="grid grid-cols-2 gap-4 bg-gray-200 p-4 rounded-2xl shadow-xl text-white ">
+      <div className="grid grid-cols-2 gap-4 shadow-md shadow-gray-400 bg-gray-200 border-2 border-gray-400 p-4 rounded-2xl  text-gray-500 ">
         <div>
           <h2 className="text-center mb-2 p-4 font-extrabold border-b-2 border-blue-950 text-blue-950 uppercase">
             {name}
@@ -13,9 +13,9 @@ export default function Mobile({ id, name, modele, image }) {
             Modèle: <span>{modele}</span>
           </p>
         </div>
-        <div className="rounded-md p-2 h-30 bg-white">
+        <div className="rounded-md p-2 h-30 bg-white mx-auto">
           <img
-            className=" h-30 object-cover"
+            className=" h-[7rem] object-cover"
             src={
               /^(http|https)/.test(image)
                 ? image

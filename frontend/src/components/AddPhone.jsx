@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LogoHome from "./LogoHome";
 
 export default function AddPhone() {
   const navigate = useNavigate();
@@ -49,21 +50,22 @@ export default function AddPhone() {
 
   return (
     <section className="flex flex-1 flex-col justify-evenly items-center text-white">
-      <h2 className="text-blue-950 my-8 mx-auto text-4xl">
+      <LogoHome />
+      <h2 className="uppercase text-blue-950 tracking-tighter font-bold my-8 mx-auto text-xl w-[80%] md:w-[40%] md:ml-[35%]">
         Ajouter un nouveau mobile
       </h2>
       <form
         onSubmit={handleSubmit}
         // className="flex flex-1 flex-col justify-evenly items-center"
-        className="bg-gray-200 p-6 rounded-2xl shadow-xl text-white max-w-6xl m-auto flex flex-col justify-evenly items-center"
+        className="shadow-md shadow-gray-400 bg-gray-200 border-2 border-gray-400 p-6 rounded-2xl  text-white md:w-[45%] w-[80%] m-auto flex flex-col justify-evenly items-center md:ml-[35%]"
       >
         <label
           htmlFor="name"
-          className="text-blue-950 flex text-2xl m-4 w-full items-center"
+          className="text-blue-950 flex text-xl m-4 w-full items-center"
         >
           Marque :
           <input
-            className="ml-4 px-4 py-1 text-black flex-1 rounded-full"
+            className="ml-4 px-4 py-1 text-black flex-1 rounded-full w-[80%] shadow-md"
             type="text"
             id="name"
             required
@@ -73,11 +75,11 @@ export default function AddPhone() {
         </label>
         <label
           htmlFor="released"
-          className="text-blue-950 flex text-2xl m-4 w-full items-center"
+          className="text-blue-950 flex text-xl m-4 w-full items-center"
         >
           Modèle :
           <input
-            className="ml-4 px-4 py-1 text-black flex-1 rounded-full"
+            className="ml-4 px-4 py-1 text-black flex-1 rounded-full w-[80%] shadow-md"
             type="text"
             id="modele"
             required
@@ -88,11 +90,11 @@ export default function AddPhone() {
 
         <label
           htmlFor="image"
-          className="text-blue-950 flex text-2xl m-4 w-full items-center"
+          className="text-blue-950 flex text-xl m-4 w-full items-center"
         >
           Image:
           <input
-            className="ml-4 px-4 py-1 text-black flex-1 rounded-full"
+            className="ml-4 px-4 py-1 text-black flex-1 rounded-full w-[80%] shadow-md "
             type="url"
             id="image"
             required

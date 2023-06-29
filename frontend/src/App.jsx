@@ -2,20 +2,17 @@
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import MobileDetails from "./pages/MobileDetails";
-import Chat from "./components/Chat";
 import AddPhone from "./components/AddPhone";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import PriceGenerator from "./pages/PriceGenerator";
 import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
-import "./pages/faq.scss";
 import MobileList from "./pages/MobileList";
 
 import UserContext from "./context/UserContext";
-import "react-responsive-modal/styles.css";
+
 import "./App.scss";
-import "./pages/modal.css";
 
 function App() {
   const [{ user }] = useContext(UserContext);
@@ -34,10 +31,11 @@ function App() {
         <div className="bubble x9" />
         <div className="bubble x10" />
       </span>
-      {user.id !== null && <Chat />}
+
       <BrowserRouter>
         {user.id !== null && <Header />}
         <Routes>
+          <Route path="/mobile" element={<PriceGenerator />} />
           <Route
             path="/"
             element={!user.id ? <Navigate to="/login" /> : <Home />}

@@ -6,6 +6,7 @@ import logo from "../assets/ec-square-4.png";
 import phoneAdd from "../assets/phone-svgrepo-com.svg";
 import faqLogo from "../assets/telephone-svgrepo-com.svg";
 import offLogo from "../assets/off-on-power-svgrepo-com.svg";
+import Chat from "./Chat";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -17,12 +18,13 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#5F6280] fixed md:top-0 bottom-0 md:left-0 md:h-screen h-12 md:w-52 w-screen flex md:flex-col md:justify-between">
-      <div className="md:flex md:flex-col md:items-center py-4 invisible md:visible">
+      <div className="md:flex md:flex-col md:items-center md:py-4 invisible md:visible">
         <Link to="/">
           <img src={logo} alt="Logo" className="h-40 w-40 object-contain" />
         </Link>
+        <Chat />
       </div>
-      <div className="flex md:flex-col absolute md:ml-[9.5rem] md:mt-4 -mt-14">
+      <div className="flex md:flex-col absolute md:ml-[9.5rem] md:mt-4 -mt-14 mx-[2rem]">
         <Link title="FAQ" to="/FAQ">
           <img
             src={faqLogo}
