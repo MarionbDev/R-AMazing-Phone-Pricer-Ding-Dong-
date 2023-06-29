@@ -95,42 +95,19 @@ export default function PriceGenerator() {
     default:
       valeursStorage = 0;
   }
-
-  let valeursState = 0;
-  switch (selectedState) {
-    case "DEEE":
-      valeursState = -100;
-      break;
-    case "REPARABLE":
-      valeursState = -50;
-      break;
-    case "BLOQUE":
-      valeursState = -10;
-      break;
-    case "CONDITIONNABLE":
-      valeursState = -5;
-      break;
-    case "CONDITIONNE":
-      valeursState = 0;
-      break;
-
-    default:
-      valeursState = 0;
-  }
-
   let valeursScreen = 0;
   switch (selectedScreen) {
     case 4:
-      valeursScreen = 25;
+      valeursScreen = 2;
       break;
     case 5:
-      valeursScreen = 32;
+      valeursScreen = 5;
       break;
     case 6:
-      valeursScreen = 38;
+      valeursScreen = 6;
       break;
     case 7:
-      valeursScreen = 44;
+      valeursScreen = 8;
       break;
 
     default:
@@ -154,19 +131,42 @@ export default function PriceGenerator() {
     }
   }
 
-  let prixMobile = totalVal + valeursState;
+  let prixMobile = totalVal;
 
   if (valeurCategory === "1 - HC") {
-    prixMobile += 10;
+    prixMobile += 0;
   } else if (valeurCategory === "2 - C") {
     prixMobile += 20;
   } else if (valeurCategory === "3 - B") {
     prixMobile += 40;
   } else if (valeurCategory === "4 - A") {
-    prixMobile += 60;
+    prixMobile += 50;
   } else if (valeurCategory === "5 - Premium") {
-    prixMobile += 70;
+    prixMobile += 60;
   }
+
+  let valeursState = 0;
+  switch (selectedState) {
+    case "DEEE":
+      valeursState = prixMobile - (prixMobile * 100) / 100;
+      break;
+    case "REPARABLE":
+      valeursState = prixMobile - (prixMobile * 50) / 100;
+      break;
+    case "BLOQUE":
+      valeursState = prixMobile - (prixMobile * 10) / 100;
+      break;
+    case "RECONDITIONNABLE":
+      valeursState = prixMobile - (prixMobile * 5) / 100;
+      break;
+    case "RECONDITIONNE":
+      valeursState = prixMobile - (prixMobile * 0) / 100;
+      break;
+
+    default:
+      valeursState = 0;
+  }
+  const totalPrice = valeursState;
 
   return (
     <div className="flex mb-36 md:mb-0">
@@ -249,7 +249,7 @@ export default function PriceGenerator() {
             </div>
             <div className="flex items-center w-[94px] text-center rounded-sm  bg-[#FFFF] md:px-6 md:py-">
               {showPrice && valeurCategory !== "1 - HC" && (
-                <p className=" ">{prixMobile} €</p>
+                <p className=" ">{Math.floor(totalPrice)} €</p>
               )}
             </div>
           </div>

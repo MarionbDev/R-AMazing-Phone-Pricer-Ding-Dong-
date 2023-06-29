@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default function ScreenFilter({ handleScreenFilter }) {
   const [selectedScreen, setSelectedScreen] = useState("");
 
-  const screenOptions = [1, 2, 3, 4, 6, 8, 12, 16, 32];
+  const screenOptions = [2, 3, 4, 5, 6, 8, 12, 16, 32];
 
   return (
     <div>
@@ -17,9 +17,7 @@ export default function ScreenFilter({ handleScreenFilter }) {
         }}
         className="w-36 md:w-48 text-center rounded-md"
       >
-        <option value="" className="">
-          Taille de l'écran
-        </option>
+        <option value="">Taille de l'écran</option>
         {screenOptions.map((option) => (
           <option key={option} value={option}>
             {option} Pouces

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default function RamFilter({ handleRAMFilter }) {
   const [selectedRAM, setSelectedRAM] = useState("");
 
-  const ramOptions = [1, 2, 3, 4, 6, 8, 12, 16, 32];
+  const ramOptions = [1, 2, 3, 4, 5, 6, 8, 12, 16, 32];
 
   return (
     <div>
