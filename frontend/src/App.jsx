@@ -1,5 +1,4 @@
-import { Routes, Route } from "react-router-dom";
-import { UserContextProvider } from "./context/UserContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import FAQ from "./components/FAQ";
@@ -22,12 +21,12 @@ function App() {
         <div className="bubble x10" />
       </span>
 
-      <UserContextProvider>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/FAQ" element={<FAQ />} />
         </Routes>
-      </UserContextProvider>
+      </BrowserRouter>
     </main>
   );
 }
