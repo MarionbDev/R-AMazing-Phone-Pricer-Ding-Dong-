@@ -7,23 +7,21 @@ class UserManager extends AbstractManager {
 
   insert(mobile) {
     return this.database.query(
-      `INSERT INTO ${this.table} (model, name) VALUES (?, ?)`,
-      [mobile.model, mobile.name]
+      `INSERT INTO ${this.table} (modele, name, image) VALUES (?, ?, ?)`,
+      [mobile.modele, mobile.name, mobile.image]
     );
   }
 
   update(mobile) {
     return this.database.query(
-      `UPDATE ${this.table} SET model = ?,
-      name =?`,
-
-      [mobile.model, mobile.name]
+      `UPDATE ${this.table} SET modele = ?,
+      name =?, image=?`[(mobile.modele, mobile.name, mobile.image)]
     );
   }
 
   find(id) {
     return this.database.query(
-      `select name, model  ${this.table} where id = ?`,
+      `select name, modele  ${this.table} where id = ?`,
       [id]
     );
   }
