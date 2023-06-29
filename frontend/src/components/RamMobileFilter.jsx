@@ -15,8 +15,11 @@ export default function RamFilter({ handleRAMFilter }) {
           setSelectedRAM(value);
           handleRAMFilter(value);
         }}
+        className="w-48 text-center rounded-md"
       >
-        <option value="">RAM du mobile</option>
+        <option value="" className="">
+          RAM du mobile
+        </option>
         {ramOptions.map((option) => (
           <option key={option} value={option}>
             {option} Go

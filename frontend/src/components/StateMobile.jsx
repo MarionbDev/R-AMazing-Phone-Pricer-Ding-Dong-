@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default function StateFilter({ handleStateFilter }) {
   const [selectedState, setSelectedState] = useState("");
 
-  const ramOptions = [
+  const stateOptions = [
     "DEEE",
     "REPARABLE",
     "BLOQUE",
@@ -21,9 +21,10 @@ export default function StateFilter({ handleStateFilter }) {
           setSelectedState(value);
           handleStateFilter(value);
         }}
+        className="w-48 text-center rounded-md"
       >
-        <option value="">Etat du téléphone</option>
-        {ramOptions.map((option) => (
+        <option value="">Etat du mobile</option>
+        {stateOptions.map((option) => (
           <option key={option} value={option}>
             {option}
           </option>
