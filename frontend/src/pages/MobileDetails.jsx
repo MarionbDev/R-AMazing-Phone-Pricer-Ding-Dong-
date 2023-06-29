@@ -37,7 +37,7 @@ export default function MobileDetails() {
 
   return (
     <div className=" flex flex-col md:ml-80 ">
-      <div className="text-center mb-8 p-4 font-extrabold border-b-2 border-violet-400">
+      <div className="text-center mb-8 p-4 font-extrabold border-b-2 border-[#5f6280]">
         <h2 className="md:text-[18px]">{mobile.name}</h2>
         <p>
           Modèle : <span>{mobile.modele}</span>
@@ -46,10 +46,10 @@ export default function MobileDetails() {
 
       <div className="flex flex-col-reverse md:flex-row ">
         <PriceGenerator />
-        <div className="flex flex-col mb-8 md:mb-0 md:ml-16">
+        <div className="flex flex-col mb-8 md:mb-0 md:ml-16 h-30 bg-white rounded-md justify-center">
           {mobile.image && (
             <img
-              className="rounded-t-md w-full object-cover"
+              className="rounded-t-md w-[22rem] object-cover"
               src={
                 /^(http|https)/.test(mobile.image)
                   ? mobile.image
@@ -57,11 +57,10 @@ export default function MobileDetails() {
               }
               alt={mobile.name}
             />
-          )}
-
-          <div className="mt-2">
+          )}{" "}
+          <div className=" mt-12">
             <button
-              className="invisible bg-red-200 inline-block rounded-full shadow-xl md:visible md:px-6 md:py-2 hover:text-white hover:bg-red-400"
+              className="invisible ml-[30%] bg-red-200 inline-block rounded-full shadow-xl md:visible md:px-6 md:py-2  hover:text-white hover:bg-red-400"
               type="button"
               onClick={deleteMobile}
             >

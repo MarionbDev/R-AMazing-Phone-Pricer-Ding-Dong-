@@ -13,7 +13,7 @@ function Home() {
   return (
     <section className=" w-[70%] mx-auto ">
       {" "}
-      <h1 className="absolute mt-3 ml-[75%]">
+      <h1 className="absolute md:mt-3 md:ml-[75%] ml-[48%] mt-1">
         Bienvenue {user && `${user.name}`}
       </h1>
       <div>
