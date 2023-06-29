@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import PriceGenerator from "./pages/PriceGenerator";
 import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
-// import FAQ from "./components/FAQ";
+import "./pages/faq.scss";
 
 import UserContext from "./context/UserContext";
 
@@ -32,14 +32,12 @@ function App() {
       <BrowserRouter>
         {user.id !== null && <Header />}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/mobile" element={<PriceGenerator />} />
           <Route
             path="/"
             element={!user.id ? <Navigate to="/login" /> : <Home />}
           />
           {!user.id && <Route path="/login" element={<Login />} />}
-          {/* <Route path="/calculateur" element={<Calculateur />} /> */}
+          <Route path="/mobile" element={<PriceGenerator />} />
           <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </BrowserRouter>

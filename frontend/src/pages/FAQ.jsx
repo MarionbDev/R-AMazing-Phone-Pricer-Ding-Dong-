@@ -13,13 +13,13 @@ export default function FAQ() {
   };
 
   return (
-    <div className="min-h-screen p-10 md:ml-20">
+    <div className="min-h-screen p-10 md:ml-96 md:w-[70vw] ">
       <h2 className="flex justify-center mb-10 text-[20px] font-bold">FAQ</h2>
       <div className="flex flex-col">
         <button
           type="button"
           onClick={() => toggleContent(0)}
-          className="focus:outline-none p-2 rounded-md border-2 mb-3 border-black "
+          className="faq focus:outline-none p-2 rounded-md mb-8  "
         >
           <div className="flex justify-between">
             <p className="font-bold mb-2 text-start">
@@ -62,7 +62,7 @@ export default function FAQ() {
         <button
           type="button"
           onClick={() => toggleContent(1)}
-          className="focus:outline-none p-2 rounded-md border-2 mb-3 border-black"
+          className="faq focus:outline-none p-2 rounded-md mb-8"
         >
           <div className="flex justify-between">
             <p className=" mb-2 font-bold text-start">
@@ -107,7 +107,7 @@ export default function FAQ() {
         <button
           type="button"
           onClick={() => toggleContent(3)}
-          className="focus:outline-none p-2 mb-3 rounded-md border-2 border-black"
+          className="faq focus:outline-none p-2 mb-8 rounded-md "
         >
           <div className="flex justify-between">
             <p className=" mb-2 font-bold text-start">Comment se connecter ?</p>
@@ -127,7 +127,7 @@ export default function FAQ() {
         <button
           type="button"
           onClick={() => toggleContent(4)}
-          className="focus:outline-none p-2 mb-3 rounded-md border-2 border-black"
+          className="faq focus:outline-none p-2 mb-8 rounded-md"
         >
           <div className="flex  justify-between">
             <p className=" mb-2 font-bold text-start">
@@ -140,7 +140,9 @@ export default function FAQ() {
             />
           </div>
           <div className={`${activeIndex === 4 ? "block" : "hidden"} mb-2 `}>
-            <p className="text-left">.......</p>
+            <p className="text-left">
+              Dans la page d'accueil, cliquez sur "S'inscrire".
+            </p>
           </div>
         </button>
       </div>
