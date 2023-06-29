@@ -46,7 +46,7 @@ CREATE TABLE `user` (
   `name` varchar(100) NOT NULL,
   `mail` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

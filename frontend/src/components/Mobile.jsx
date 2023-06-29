@@ -13,9 +13,9 @@ export default function Mobile({ id, name, modele, image }) {
             Modèle: <span>{modele}</span>
           </p>
         </div>
-        <div className="rounded-md p-2 h-30 bg-white">
+        <div className="rounded-md p-2 h-30 bg-white mx-auto">
           <img
-            className=" h-30 object-cover"
+            className=" h-[7rem] object-cover"
             src={
               /^(http|https)/.test(image)
                 ? image
