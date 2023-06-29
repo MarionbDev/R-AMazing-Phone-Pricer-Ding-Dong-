@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 require("dotenv").config();
 const uniqid = require("uniqid");
 const socketIO = require("socket.io");
