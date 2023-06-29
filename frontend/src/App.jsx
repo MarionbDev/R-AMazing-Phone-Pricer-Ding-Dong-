@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { UserContextProvider } from "./context/UserContext";
 
 import Home from "./pages/Home";
-import FAQ from "./components/FAQ";
+import PriceGenerator from "./pages/PriceGenerator";
+import FAQ from "./pages/FAQ";
 
 import "./App.scss";
 
@@ -25,6 +26,7 @@ function App() {
       <UserContextProvider>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/mobile" element={<PriceGenerator />} />
           <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </UserContextProvider>
