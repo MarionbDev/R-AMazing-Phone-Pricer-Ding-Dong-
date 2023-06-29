@@ -20,6 +20,12 @@ dependencies:
   mysql2:
     specifier: ^3.4.2
     version: 3.4.2
+  socket.io:
+    specifier: ^4.7.1
+    version: 4.7.1
+  uniqid:
+    specifier: ^5.4.0
+    version: 5.4.0
 
 devDependencies:
   eslint:
@@ -339,12 +345,42 @@ packages:
       fastq: 1.15.0
     dev: true
 
+  /@socket.io/component-emitter@3.1.0:
+    resolution:
+      {
+        integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==,
+      }
+    dev: false
+
+  /@types/cookie@0.4.1:
+    resolution:
+      {
+        integrity: sha512-XW/Aa8APYr6jSVVA1y/DEIZX0/GMKLEVekNG727R8cs56ahETkRAy/3DR7+fJyh7oUgGwNQaRfXCun0+KbWY7Q==,
+      }
+    dev: false
+
+  /@types/cors@2.8.13:
+    resolution:
+      {
+        integrity: sha512-RG8AStHlUiV5ysZQKq97copd2UmVYw3/pRMLefISZ3S1hK104Cwm7iLQ3fTKx+lsUH2CE8FlLaYeEA2LSeqYUA==,
+      }
+    dependencies:
+      "@types/node": 20.3.2
+    dev: false
+
   /@types/json5@0.0.29:
     resolution:
       {
         integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==,
       }
     dev: true
+
+  /@types/node@20.3.2:
+    resolution:
+      {
+        integrity: sha512-vOBLVQeCQfIcF/2Y7eKFTqrMnizK5lRNQ7ykML/5RuwVXVWxYkgwS7xbt4B6fKCUPgbSL5FSsjHQpaGQP/dQmw==,
+      }
+    dev: false
 
   /abbrev@1.1.1:
     resolution:
@@ -503,6 +539,14 @@ packages:
         integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==,
       }
     dev: true
+
+  /base64id@2.0.0:
+    resolution:
+      {
+        integrity: sha512-lGe34o6EHj9y3Kts9R4ZYs/Gr+6N7MCaMlIFA3F1R2O5/m7K06AxfSeO5530PEERE6/WyEg3lsuyw4GHlPZHog==,
+      }
+    engines: { node: ^4.5.0 || >= 5.9 }
+    dev: false
 
   /binary-extensions@2.2.0:
     resolution:
@@ -665,6 +709,14 @@ packages:
       }
     dev: false
 
+  /cookie@0.4.2:
+    resolution:
+      {
+        integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==,
+      }
+    engines: { node: ">= 0.6" }
+    dev: false
+
   /cookie@0.5.0:
     resolution:
       {
@@ -738,7 +790,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: true
 
   /deep-is@0.1.4:
     resolution:
@@ -823,6 +874,37 @@ packages:
         integrity: sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==,
       }
     engines: { node: ">= 0.8" }
+    dev: false
+
+  /engine.io-parser@5.1.0:
+    resolution:
+      {
+        integrity: sha512-enySgNiK5tyZFynt3z7iqBR+Bto9EVVVvDFuTT0ioHCGbzirZVGDGiQjZzEp8hWl6hd5FSVytJGuScX1C1C35w==,
+      }
+    engines: { node: ">=10.0.0" }
+    dev: false
+
+  /engine.io@6.5.1:
+    resolution:
+      {
+        integrity: sha512-mGqhI+D7YxS9KJMppR6Iuo37Ed3abhU8NdfgSvJSDUafQutrN+sPTncJYTyM9+tkhSmWodKtVYGPPHyXJEwEQA==,
+      }
+    engines: { node: ">=10.0.0" }
+    dependencies:
+      "@types/cookie": 0.4.1
+      "@types/cors": 2.8.13
+      "@types/node": 20.3.2
+      accepts: 1.3.8
+      base64id: 2.0.0
+      cookie: 0.4.2
+      cors: 2.8.5
+      debug: 4.3.4
+      engine.io-parser: 5.1.0
+      ws: 8.11.0
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
     dev: false
 
   /es-abstract@1.21.2:
@@ -2016,7 +2098,6 @@ packages:
       {
         integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==,
       }
-    dev: true
 
   /ms@2.1.3:
     resolution:
@@ -2581,6 +2662,51 @@ packages:
       semver: 7.0.0
     dev: true
 
+  /socket.io-adapter@2.5.2:
+    resolution:
+      {
+        integrity: sha512-87C3LO/NOMc+eMcpcxUBebGjkpMDkNBS9tf7KJqcDsmL936EChtVva71Dw2q4tQcuVC+hAUy4an2NO/sYXmwRA==,
+      }
+    dependencies:
+      ws: 8.11.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
+  /socket.io-parser@4.2.4:
+    resolution:
+      {
+        integrity: sha512-/GbIKmo8ioc+NIWIhwdecY0ge+qVBSMdgxGygevmdHj24bsfgtCmcUUcQ5ZzcylGFHsN3k4HB4Cgkl96KVnuew==,
+      }
+    engines: { node: ">=10.0.0" }
+    dependencies:
+      "@socket.io/component-emitter": 3.1.0
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /socket.io@4.7.1:
+    resolution:
+      {
+        integrity: sha512-W+utHys2w//dhFjy7iQQu9sGd3eokCjGbl2r59tyLqNiJJBdIebn3GAKEXBr3osqHTObJi2die/25bCx2zsaaw==,
+      }
+    engines: { node: ">=10.0.0" }
+    dependencies:
+      accepts: 1.3.8
+      base64id: 2.0.0
+      cors: 2.8.5
+      debug: 4.3.4
+      engine.io: 6.5.1
+      socket.io-adapter: 2.5.2
+      socket.io-parser: 4.2.4
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: false
+
   /sqlstring@2.3.3:
     resolution:
       {
@@ -2791,6 +2917,13 @@ packages:
       }
     dev: true
 
+  /uniqid@5.4.0:
+    resolution:
+      {
+        integrity: sha512-38JRbJ4Fj94VmnC7G/J/5n5SC7Ab46OM5iNtSstB/ko3l1b5g7ALt4qzHFgGciFkyiRNtDXtLNb+VsxtMSE77A==,
+      }
+    dev: false
+
   /unpipe@1.0.0:
     resolution:
       {
@@ -2869,6 +3002,22 @@ packages:
         integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==,
       }
     dev: true
+
+  /ws@8.11.0:
+    resolution:
+      {
+        integrity: sha512-HPG3wQd9sNQoT9xHyNCXoDUa+Xw/VevmY9FoHyQ+g+rrMn4j6FB4np7Z0OhdTgjx6MgQLK7jwSy1YecU1+4Asg==,
+      }
+    engines: { node: ">=10.0.0" }
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
 
   /yocto-queue@0.1.0:
     resolution:

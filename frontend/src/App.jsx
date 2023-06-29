@@ -1,6 +1,7 @@
 /* eslint-disable import/no-duplicates */
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Chat from "@components/Chat";
 import AddPhone from "./components/AddPhone";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -30,6 +31,7 @@ function App() {
         <div className="bubble x9" />
         <div className="bubble x10" />
       </span>
+      {user.id !== null && <Chat />}
       <BrowserRouter>
         {user.id !== null && <Header />}
         <Routes>
