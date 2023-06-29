@@ -3,6 +3,7 @@ import { UserContextProvider } from "./context/UserContext";
 
 import Home from "./pages/Home";
 import FAQ from "./components/FAQ";
+import Navbar from "./components/Navbar";
 
 import "./App.scss";
 
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/FAQ" element={<FAQ />} />
+          <Route path="/Navbar" element={<Navbar />} />
         </Routes>
       </UserContextProvider>
     </main>
