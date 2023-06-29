@@ -1,52 +1,45 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const imageTypes = ["image/jpeg", "image/jpg", "image/png"];
-
 export default function AddPhone() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [model, setModel] = useState("");
-  const [backgroundImage, setBackgroundImage] = useState("");
+  const [modele, setModele] = useState("");
+  const [image, setImage] = useState("");
 
   const handleChangeName = (e) => {
     setName(e.target.value);
   };
 
-  const handleChangeModel = (e) => {
-    setModel(e.target.value);
+  const handleChangeModele = (e) => {
+    setModele(e.target.value);
   };
 
-  const handleChangeBackgroundImage = (e) => {
-    // console.log(e);
-    const fileSelected = e.target.files[0];
-
-    if (imageTypes.includes(fileSelected.type)) {
-      setBackgroundImage(e.target.files[0]);
-    } else {
-      alert("Only jpeg, jpg and png are allowed");
-    }
+  const handleChangeImage = (e) => {
+    setImage(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!name || !model || !backgroundImage) {
-      alert("You must provide a name, a model date and a picture!!!!");
+    if (!name || !modele || !image) {
+      alert("You must provide a name, a modele and a picture!!!!");
     } else {
-      const gameData = new FormData();
-      gameData.append("backgroundImage", backgroundImage);
-      gameData.append("name", name);
-      gameData.append("model", model);
-
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/mobile`, {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/mobiles`, {
         method: "POST",
         credentials: "include",
-        body: gameData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          modele,
+          image,
+        }),
       })
         .then((res) => res.json())
         .then((data) => {
-          navigate(`/mobile/${data.id}`);
+          navigate(`/mobiles/${data.id}`);
         })
         .catch(() => {
           alert("Error to create the mobile, please try again!!!");
@@ -86,30 +79,32 @@ export default function AddPhone() {
           <input
             className="ml-4 px-4 py-1 text-black flex-1 rounded-full"
             type="text"
-            id="model"
+            id="modele"
             required
-            value={model}
-            onChange={handleChangeModel}
+            value={modele}
+            onChange={handleChangeModele}
           />
         </label>
 
         <label
-          htmlFor="backgroundImage"
+          htmlFor="image"
           className="text-blue-950 flex text-2xl m-4 w-full items-center"
         >
-          Picture:
+          Image:
           <input
             className="ml-4 px-4 py-1 text-black flex-1 rounded-full"
-            type="link"
-            id="backgroundImage"
-            onChange={handleChangeBackgroundImage}
+            type="url"
+            id="image"
+            required
+            value={image}
+            onChange={handleChangeImage}
           />
         </label>
         <button
           className="mx-4 bg-[#5F6280] inline-block rounded-full shadow-xl px-6 py-2 border-2  hover:text-white hover:border-2 hover:border-white"
           type="submit"
         >
-          Create the game
+          Ajouter le mobile
         </button>
       </form>
     </section>

@@ -1,14 +1,15 @@
 /* eslint-disable import/no-duplicates */
 import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Chat from "@components/Chat";
+import MobileDetails from "./pages/MobileDetails";
+import Chat from "./components/Chat";
 import AddPhone from "./components/AddPhone";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import PriceGenerator from "./pages/PriceGenerator";
 import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
-// import FAQ from "./components/FAQ";
+import MobileList from "./pages/MobileList";
 
 import UserContext from "./context/UserContext";
 
@@ -41,10 +42,27 @@ function App() {
             element={!user.id ? <Navigate to="/login" /> : <Home />}
           />
           {!user.id && <Route path="/login" element={<Login />} />}
-          <Route path="/addPhone" element={<AddPhone />} />
-          {/* <Route path="/FAQ" element={<FAQ />} /> */}
-          {/* <Route path="/calculateur" element={<Calculateur />} /> */}
-          <Route path="/FAQ" element={<FAQ />} />
+          <Route
+            path="/mobiles"
+            element={!user.id ? <Navigate to="/login" /> : <MobileList />}
+          />
+
+          <Route
+            path="/mobiles/:id"
+            element={!user.id ? <Navigate to="/login" /> : <MobileDetails />}
+          />
+          <Route
+            path="/mobile"
+            element={!user.id ? <Navigate to="/login" /> : <PriceGenerator />}
+          />
+          <Route
+            path="/addPhone"
+            element={!user.id ? <Navigate to="/login" /> : <AddPhone />}
+          />
+          <Route
+            path="/FAQ"
+            element={!user.id ? <Navigate to="/login" /> : <FAQ />}
+          />
         </Routes>
       </BrowserRouter>
     </main>
