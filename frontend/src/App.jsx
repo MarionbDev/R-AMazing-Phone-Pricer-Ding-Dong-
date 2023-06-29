@@ -40,7 +40,7 @@ function App() {
           {!user.id && <Route path="/login" element={<Login />} />}
           <Route path="/mobile" element={<PriceGenerator />} />
           <Route path="/addPhone" element={<AddPhone />} />
-          && <Route path="/FAQ" element={<FAQ />} />
+          <Route path="/FAQ" element={<FAQ />} />
         </Routes>
       </BrowserRouter>
     </main>
