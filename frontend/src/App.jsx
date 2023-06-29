@@ -1,13 +1,20 @@
-import { Routes, Route } from "react-router-dom";
-import { UserContextProvider } from "./context/UserContext";
-
+/* eslint-disable import/no-duplicates */
+import { useContext } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Calculateur from "./pages/Calculateur";
+import Header from "./components/Header";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 import FAQ from "./components/FAQ";
 import Navbar from "./components/Navbar";
+
+import UserContext from "./context/UserContext";
 
 import "./App.scss";
 
 function App() {
+  const [{ user }] = useContext(UserContext);
+
   return (
     <main className="App">
       <span id="background-wrap">
@@ -22,14 +29,19 @@ function App() {
         <div className="bubble x9" />
         <div className="bubble x10" />
       </span>
-
-      <UserContextProvider>
+      <BrowserRouter>
+        {user.id !== null && <Header />}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={!user.id ? <Navigate to="/login" /> : <Home />}
+          />
+          {!user.id && <Route path="/login" element={<Login />} />}
+          <Route path="/calculateur" element={<Calculateur />} />
           <Route path="/FAQ" element={<FAQ />} />
           <Route path="/Navbar" element={<Navbar />} />
         </Routes>
-      </UserContextProvider>
+      </BrowserRouter>
     </main>
   );
 }

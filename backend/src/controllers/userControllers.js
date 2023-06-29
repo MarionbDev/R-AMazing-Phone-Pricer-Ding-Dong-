@@ -1,12 +1,20 @@
 const argon2 = require("@node-rs/argon2");
-const models = require("../routes");
+const models = require("../models");
 
-const hashingOptions = {
-  type: argon2.argon2id,
-  memoryCost: 2 ** 16,
-  timeCost: 5,
-  parallelism: 1,
+// const hashingOptions = {
+//   type: argon2.argon2id,
+//   memoryCost: 2 ** 16,
+//   timeCost: 5,
+//   parallelism: 1,
+// };
+
+const hashPassword = (userPassword) => {
+  return argon2.hash(userPassword);
 };
+
+// const verifyPassword = (userPassword, hashedPassword) => {
+//   return argon2.verify(hashedPassword, userPassword);
+// };
 
 const browse = (req, res) => {
   models.user
@@ -58,19 +66,41 @@ const edit = (req, res) => {
     });
 };
 
-const add = (req, res) => {
+// eslint-disable-next-line consistent-return
+const add = async (req, res) => {
   const user = req.body;
-
   // TODO validations (length, format...)
-  models.user
-    .insert(user)
-    .then(([result]) => {
-      res.status(201).json({ id: result.insertId });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+
+  try {
+    const userAlreadyExists = await models.user
+      .findByEmail(user.mail)
+      .then(([result]) => {
+        if (result.length) {
+          return true;
+        }
+        return false;
+      });
+
+    if (userAlreadyExists) {
+      return res.status(403).send("User with this email already exists");
+    }
+
+    const hashedPassword = await hashPassword(user.password);
+
+    models.user
+      .insert({ ...user, password: hashedPassword })
+      .then(([result]) => {
+        return res.status(201).json({ id: result.insertId });
+      })
+      .catch((err) => {
+        console.error(err);
+        return res.sendStatus(500);
+      });
+  } catch (err) {
+    if (err) {
+      return res.status(500).send(err);
+    }
+  }
 };
 
 const destroy = (req, res) => {
@@ -90,18 +120,18 @@ const destroy = (req, res) => {
 };
 
 const login = (req, res) => {
-  const { email, password } = req.body;
+  const { mail, password } = req.body;
 
-  models.user
-    .findByEmail(email)
+  return models.user
+    .findByEmail(mail)
     .then(([users]) => {
       if (users.length === 0) {
-        res.sendStatus(404);
-      } else if (!argon2.verifySync(users[0].hashedPassword, password)) {
+        res.status(404).send(`User with email ${mail} not found`);
+      } else if (!argon2.verifySync(users[0].password, password)) {
         res.sendStatus(404);
       } else {
         const user = { ...users[0] };
-        delete user.hashedPassword;
+        delete user.password;
         res
           .cookie("token", "my super token", {
             httpOnly: true,
@@ -117,24 +147,24 @@ const login = (req, res) => {
     });
 };
 
-const hashPassword = (req, res, next) => {
-  const { password } = req.body;
-  if (!password) {
-    res.sendStatus(400);
-  } else {
-    argon2
-      .hash(password, hashingOptions)
-      .then((hashedPassword) => {
-        req.body.hashedPassword = hashedPassword;
-        delete req.body.password;
-        next();
-      })
-      .catch((err) => {
-        console.error(err);
-        res.sendStatus(500);
-      });
-  }
-};
+// const hashPassword = (req, res, next) => {
+//   const { password } = req.body;
+//   if (!password) {
+//     res.sendStatus(400);
+//   } else {
+//     argon2
+//       .hash(password, hashingOptions)
+//       .then((hashedPassword) => {
+//         req.body.hashedPassword = hashedPassword;
+//         delete req.body.password;
+//         next();
+//       })
+//       .catch((err) => {
+//         console.error(err);
+//         res.sendStatus(500);
+//       });
+//   }
+// };
 
 module.exports = {
   browse,

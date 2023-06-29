@@ -23,10 +23,8 @@ UserContextProvider.propTypes = {
   initialState: PropTypes.shape({
     user: PropTypes.shape({
       id: PropTypes.number.isRequired,
-      firstname: PropTypes.string.isRequired,
-      lastname: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      role_id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      mail: PropTypes.string.isRequired,
     }),
   }).isRequired,
 };
