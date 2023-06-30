@@ -62,7 +62,7 @@ export default function MobileList() {
           </div>
         </div>
       </div>
-      <div className=" mt-4 md:ml-48 mx-auto grid grid-cols-1 gap-9 md:grid-cols-2 w-[100%] md:w-[90%]">
+      <div className=" mt-4 md:ml-48 mx-auto grid grid-cols-1 gap-9 md:grid-cols-2 w-[100%] md:w-[90%] mb-28">
         {filteredMobiles.map((mobile) => (
           <Mobile {...mobile} key={`mobile-${mobile.id}`} />
         ))}

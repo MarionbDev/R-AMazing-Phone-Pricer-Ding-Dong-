@@ -13,7 +13,7 @@ const Navbar = () => {
   const [{ user }, dispatch] = useUserContext();
   const handleLogout = () => {
     dispatch({ type: "RESET_USER" });
-    navigate("/login"); // Rediriger vers la page de connexion après la déconnexion
+    navigate("/"); // Rediriger vers la page de connexion après la déconnexion
   };
 
   return (
@@ -48,6 +48,9 @@ const Navbar = () => {
           />
         </button>
       </div>
+      <p className="text-white text-xs mb-2 ml-2 invisible md:visible">
+        © WCS - La Loupe 2023
+      </p>
     </nav>
   );
 };

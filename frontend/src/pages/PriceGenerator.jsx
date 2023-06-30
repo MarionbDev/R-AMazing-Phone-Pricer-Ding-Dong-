@@ -227,13 +227,18 @@ export default function PriceGenerator() {
               classNames={{ overlay: "customOverlay", modal: "customModal" }}
               closeIcon={
                 <span
-                  style={{ fontSize: "20px", width: "20px", height: "20px" }}
+                  style={{
+                    fontSize: "20px",
+                    width: "20px",
+                    height: "20px",
+                    color: "white",
+                  }}
                 >
                   X
                 </span>
               }
             >
-              <div className="p-2 text-base flex justify-center text-[#FFFFFF] italic font-lightbold md:text-lg md:mt-0 md:py-0">
+              <div className="p-2 text-base flex justify-center text-[#FFFFFF]  font-lightbold md:text-lg md:mt-1 md:py-0">
                 {valeurCategory === "1 - HC" ? (
                   <h1>
                     Malheureusement le téléphone n'est pas éligible à la reprise

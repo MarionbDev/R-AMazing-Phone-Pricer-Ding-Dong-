@@ -11,7 +11,7 @@ const userReducer = (state, action) => {
       return { ...state, user: action.payload };
     }
     case "RESET_USER": {
-      return { ...state, user: null };
+      return { ...state, user: { id: null, name: null, mail: null } };
     }
     default: {
       return state;

@@ -11,8 +11,9 @@ import Login from "./pages/Login";
 import MobileList from "./pages/MobileList";
 
 import UserContext from "./context/UserContext";
-
+import "react-responsive-modal/styles.css";
 import "./App.scss";
+import "./pages/modal.css";
 
 function App() {
   const [{ user }] = useContext(UserContext);

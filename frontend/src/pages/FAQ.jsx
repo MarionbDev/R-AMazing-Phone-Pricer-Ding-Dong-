@@ -118,7 +118,7 @@ export default function FAQ() {
           >
             <div className="flex justify-between">
               <p className=" text-blue-950 flex text-xl text-start">
-                Comment se connecter ?
+                Je ne trouve pas mon portable dans la liste, que faire ?
               </p>
               <img
                 src={Arrow}
@@ -128,8 +128,10 @@ export default function FAQ() {
             </div>
             <div className={`${activeIndex === 3 ? "block" : "hidden"} mb-2 `}>
               <p className="text-left">
-                Dans la page d'accueil, entrez votre adresse mail et votre mot
-                de passe.
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book
               </p>
             </div>
           </button>
@@ -140,7 +142,7 @@ export default function FAQ() {
           >
             <div className="flex  justify-between">
               <p className=" text-blue-950 flex text-xl text-start">
-                Comment créer un compte ?
+                Comment évaluer l'état général du téléphone ?
               </p>
               <img
                 src={Arrow}
@@ -150,8 +152,10 @@ export default function FAQ() {
             </div>
             <div className={`${activeIndex === 4 ? "block" : "hidden"} mb-2 `}>
               <p className="text-left">
-                Dans la page d'accueil, cliquez sur "S'inscrire" et remplir les
-                champs demandés.
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500s, when an unknown printer took a galley
+                of type and scrambled it to make a type specimen book
               </p>
             </div>
           </button>

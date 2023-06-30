@@ -1,9 +1,9 @@
 .customOverlay {
-  background: rgba(36, 123, 160, 0.7);
+  background: rgba(215, 215, 215, 0.532);
 }
 
 .customModal {
-  background: rgb(161, 173, 208);
+  background: #5f6280;
   width: 280px;
   height: 110px;
   border-radius: 10px;
