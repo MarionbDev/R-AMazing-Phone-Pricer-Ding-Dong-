@@ -1,0 +1,111 @@
+.form {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding: 2rem;
+
+  .background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 25px;
+    background: linear-gradient(
+      135deg,
+      rgb(243, 243, 243) 0%,
+      rgb(209, 209, 209) 100%
+    );
+    box-shadow: 5px 5px 15px 5px #00000091;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    img {
+      width: 60%;
+      aspect-ratio: 1/1;
+    }
+
+    span {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      form {
+        width: 100%;
+        div {
+          display: flex;
+
+          input {
+            width: 70%;
+            aspect-ratio: 9/1;
+            padding: 1rem;
+            margin: 0.5rem auto;
+            border: none;
+            border-radius: 75px;
+            font-size: 1rem;
+            transition: 0.1s;
+
+            &:focus {
+              outline: none;
+              box-shadow: inset 0px 0px 15px 5px #aaaaaa;
+            }
+          }
+
+          &.buttons {
+            width: 100%;
+            align-items: center;
+            flex-direction: column;
+
+            button {
+              width: 60%;
+              aspect-ratio: 9/1;
+              padding: 1rem;
+              margin: 0.3rem 0rem;
+              border: solid 2px #a0a0a0;
+              border-radius: 75px;
+              font-size: 1rem;
+              background-color: #5f6280;
+              color: #ffffff;
+              transition: 0.3s;
+              cursor: pointer;
+
+              &:hover {
+                background-color: #d2d6ee;
+                color: #24355b;
+                border: solid 2px #24355b;
+                transform: scale(105%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .form {
+    .background {
+      display: grid;
+      max-width: 100%;
+
+      h1 {
+        text-align: center;
+        grid-area: 1 / 1 / 2 / 2;
+      }
+      img {
+        margin: auto;
+        max-width: 20vw;
+        grid-area: 2 / 1 / 3 / 2;
+      }
+
+      span {
+        grid-area: 1 / 2 / 3 / 3;
+      }
+    }
+  }
+}

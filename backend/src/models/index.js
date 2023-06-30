@@ -1,3 +1,5 @@
+const fs = require("fs");
+const path = require("path");
 require("dotenv").config();
 
 const mysql = require("mysql2/promise");
@@ -27,15 +29,18 @@ pool.getConnection().catch(() => {
 
 // declare and fill models: that's where you should register your own managers
 
-const models = {};
+const models = fs
+  .readdirSync(__dirname)
+  .filter((file) => file !== "AbstractManager.js" && file !== "index.js")
+  .reduce((acc, file) => {
+    // eslint-disable-next-line global-require, import/no-dynamic-require
+    const Manager = require(path.join(__dirname, file));
 
-const ItemManager = require("./ItemManager");
+    // eslint-disable-next-line no-param-reassign
+    acc[Manager.table] = new Manager(pool, Manager.table);
 
-models.item = new ItemManager();
-models.item.setDatabase(pool);
-
-// bonus: use a proxy to personalize error message,
-// when asking for a non existing model
+    return acc;
+  }, {});
 
 const handler = {
   get(obj, prop) {
@@ -49,7 +54,7 @@ const handler = {
     throw new ReferenceError(
       `models.${prop} is not defined. Did you create ${pascalize(
         prop
-      )}Manager.js, and did you register it in backend/src/models/index.js?`
+      )}Manager.js?`
     );
   },
 };

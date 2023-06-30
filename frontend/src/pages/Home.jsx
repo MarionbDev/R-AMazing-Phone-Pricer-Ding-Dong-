@@ -1,36 +1,34 @@
-import Counter from "../components/Counter";
-import logo from "../assets/logo.svg";
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/no-duplicates */
+import React, { useContext } from "react";
+// import Logo from "@assets/Icons/Logo.svg";
+import UserContext from "../context/UserContext";
+// import style from "./Home.module.scss";
+import MobileList from "./MobileList";
+import LogoHome from "../components/LogoHome";
 
-export default function Home() {
+function Home() {
+  const [{ user }] = useContext(UserContext);
+
   return (
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>Hello Vite + React !</p>
-
-      <Counter />
-
-      <p>
-        Edit <code>App.jsx</code> and save to test HMR updates.
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {" | "}
-        <a
-          className="App-link"
-          href="https://vitejs.dev/guide/features.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vite Docs
-        </a>
-      </p>
-    </header>
+    <section className=" w-[70%] mx-auto ">
+      {" "}
+      <h1 className="absolute md:mt-3 md:ml-[75%] ml-[48%] mt-1">
+        Bienvenue {user && `${user.name}`}
+      </h1>
+      <div>
+        <LogoHome />
+        <MobileList />
+      </div>
+    </section>
   );
 }
+
+export default Home;
+
+// {
+//   /* <div className={style.background}>
+//         <h1>Bienvenue {user && `${user.name}`}</h1>
+//         <img src={Logo} alt="" />
+//       </div> */
+// }
