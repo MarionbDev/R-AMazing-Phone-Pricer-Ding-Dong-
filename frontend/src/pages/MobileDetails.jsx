@@ -26,7 +26,7 @@ export default function MobileDetails() {
       fetch(`${import.meta.env.VITE_BACKEND_URL}/api/mobiles/${id}`, {
         method: "DELETE",
       })
-        .then(() => navigate("/mobiles"))
+        .then(() => navigate("/"))
         .catch((err) => console.error(err));
     }
   };
@@ -59,13 +59,13 @@ export default function MobileDetails() {
             />
           )}
           <div className=" mt-2">
-            <button
+            <navigate
               className="invisible ml-[20%] bg-red-200 inline-block rounded-full shadow-xl md:visible md:px-6 md:py-2  hover:text-white hover:bg-red-400"
               type="button"
               onClick={deleteMobile}
             >
               Supprimer
-            </button>
+            </navigate>
           </div>
         </div>
       </div>

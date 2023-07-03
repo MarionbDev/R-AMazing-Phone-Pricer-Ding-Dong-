@@ -1,5 +1,5 @@
 .chat {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -7,9 +7,10 @@
   .container {
     padding: 1.5rem;
     border-radius: 25px;
-    max-width: 350px;
+    max-width: 300px;
     background-color: rgb(229 231 235);
     border: 1px solid #5f6280;
+    margin-left: 60px;
 
     span {
       display: inline-flex;
@@ -128,6 +129,7 @@
 
 @media screen and (min-width: 1024px) {
   .chat {
+    display: flex;
     position: relative;
     margin-bottom: -5rem;
     margin-left: 22rem;
